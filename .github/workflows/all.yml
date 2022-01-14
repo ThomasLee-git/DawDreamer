@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - 'feature/linux-github-action'
   release:
     types: [published]
 jobs:
@@ -218,7 +217,7 @@ jobs:
         name: my-wheel-artifact
         path: ./wheelhouse/*.whl
 
-    - name: "Build docs for Github pages"
+    - name: "Build docs for GitHub pages"
       if: ${{ matrix.python-version == '3.8' && github.event_name == 'release' && github.event.action == 'published' }}
       shell: cmd
       run: |
