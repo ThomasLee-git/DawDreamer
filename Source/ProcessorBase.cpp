@@ -23,29 +23,6 @@ ProcessorBase::setStateInformation(const void* data, int sizeInBytes)
             myParameters.replaceState(juce::ValueTree::fromXml(*xmlState));
 }
 
-bool ProcessorBase::setAutomation(std::string parameterName, py::array input) {
-
-    try
-    {
-        auto parameter = (AutomateParameterFloat*)myParameters.getParameter(parameterName);  // todo: why do we have to cast to AutomateParameterFloat instead of AutomateParameter
-
-        if (parameter) {
-            return parameter->setAutomation(input);
-        }
-        else {
-            std::cerr << "Failed to find parameter: " << parameterName << std::endl;
-            return false;
-        }
-    }
-    catch (const std::exception& e)
-    {
-        std::cerr << "Failed to set '" << parameterName << "' automation: " << e.what() << std::endl;
-        return false;
-    }
-
-    return true;
-}
-
 bool ProcessorBase::setAutomationVal(std::string parameterName, float val) {
 
     try
@@ -93,17 +70,3 @@ float ProcessorBase::getAutomationVal(std::string parameterName, int index) {
     }
 }
 
-py::array_t<float> ProcessorBase::getAutomationNumpy(std::string parameterName) {
-    std::vector<float> data = getAutomation(parameterName);
-
-    py::array_t<float, py::array::c_style> arr({ (int)data.size() });
-
-    auto ra = arr.mutable_unchecked();
-
-    for (size_t i = 0; i < data.size(); i++)
-    {
-        ra(i) = data[i];
-    }
-
-    return arr;
-}

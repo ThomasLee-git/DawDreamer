@@ -1,6 +1,7 @@
 #pragma once
 
 #include "RenderEngine.h"
+#include "AllProcessorWrappers.h"
 #include "custom_pybind_wrappers.h"
 
 class RenderEngineWrapper : public RenderEngine
@@ -11,39 +12,39 @@ public:
     //RenderEngineWrapper(const RenderEngineWrapper&) = delete;
 
     /// @brief
-    std::shared_ptr<OscillatorProcessor> makeOscillatorProcessor(const std::string& name, float freq);
+    // std::shared_ptr<OscillatorProcessor> makeOscillatorProcessor(const std::string& name, float freq);
 
     /// @brief
     std::shared_ptr<PluginProcessorWrapper> makePluginProcessor(const std::string& name, const std::string& path);
 
     /// @brief
-    std::shared_ptr<PlaybackProcessor> makePlaybackProcessor(const std::string& name, py::array input);
+    // std::shared_ptr<PlaybackProcessor> makePlaybackProcessor(const std::string& name, py::array input);
 
 #ifdef BUILD_DAWDREAMER_RUBBERBAND
     /// @brief
-    std::shared_ptr<PlaybackWarpProcessor> makePlaybackWarpProcessor(const std::string& name, py::array input);
+    // std::shared_ptr<PlaybackWarpProcessor> makePlaybackWarpProcessor(const std::string& name, py::array input);
 #endif
 
     /// @brief
-    std::shared_ptr<FilterProcessor> makeFilterProcessor(const std::string& name, const std::string& mode, float freq, float q, float gain);
+    // std::shared_ptr<FilterProcessor> makeFilterProcessor(const std::string& name, const std::string& mode, float freq, float q, float gain);
 
     /// @brief
-    std::shared_ptr<CompressorProcessor> makeCompressorProcessor(const std::string& name, float threshold, float ratio, float attack, float release);
+    // std::shared_ptr<CompressorProcessor> makeCompressorProcessor(const std::string& name, float threshold, float ratio, float attack, float release);
 
     /// @brief
-    std::shared_ptr<AddProcessor> makeAddProcessor(const std::string& name, std::vector<float> gainLevels);
+    // std::shared_ptr<AddProcessor> makeAddProcessor(const std::string& name, std::vector<float> gainLevels);
 
     /// @brief
-    std::shared_ptr<ReverbProcessor> makeReverbProcessor(const std::string& name, float roomSize, float damping, float wetLevel, float dryLevel, float width);
+    // std::shared_ptr<ReverbProcessor> makeReverbProcessor(const std::string& name, float roomSize, float damping, float wetLevel, float dryLevel, float width);
 
     ///
-    std::shared_ptr<PannerProcessor> makePannerProcessor(const std::string& name, std::string& rule, float panVal);
+    // std::shared_ptr<PannerProcessor> makePannerProcessor(const std::string& name, std::string& rule, float panVal);
 
     ///
-    std::shared_ptr<DelayProcessor> makeDelayProcessor(const std::string& name, std::string& rule, float delay, float wet);
+    // std::shared_ptr<DelayProcessor> makeDelayProcessor(const std::string& name, std::string& rule, float delay, float wet);
 
     ///
-    std::shared_ptr<SamplerProcessor> makeSamplerProcessor(const std::string& name, py::array input);
+    // std::shared_ptr<SamplerProcessor> makeSamplerProcessor(const std::string& name, py::array input);
 
     ///
 #ifdef BUILD_DAWDREAMER_FAUST
@@ -52,4 +53,16 @@ public:
 
     bool loadGraphWrapper(py::object dagObj);
 
+    // lxd
+    py::array_t<float> getAudioFrames();
+
+    py::array_t<float> getAudioFramesForName(std::string& name);
+
+    py::array_t<float> getAudioFramesFromProcessor(const ProcessorBase* processor);
+
+    ProcessorBase* getProcessorByName(std::string& name);
+
+    py::array_t<float> getAutomationNumpy(std::string pluginName, std::string parameterName);
+
+    bool setAutomation(std::string pluginName, std::string parameterName, py::array_t<float> input);
 };

@@ -155,13 +155,13 @@ RenderEngine::render(const double renderLength) {
     
     int numNodes = myMainProcessorGraph->getNumNodes();
     for (int i = 0; i < numNodes; i++) {
-        auto faustProcessor = dynamic_cast<FaustProcessor*> (myMainProcessorGraph->getNode(i)->getProcessor());
-        if (faustProcessor && (!faustProcessor->isCompiled())) {
-            if (!faustProcessor->compile()) {
-                std::cerr << "Faust didn't compile correctly." << std::endl;
-                return false;
-            }
-        }
+        // auto faustProcessor = dynamic_cast<FaustProcessor*> (myMainProcessorGraph->getNode(i)->getProcessor());
+        // if (faustProcessor && (!faustProcessor->isCompiled())) {
+        //     if (!faustProcessor->compile()) {
+        //         std::cerr << "Faust didn't compile correctly." << std::endl;
+        //         return false;
+        //     }
+        // }
         auto processor = dynamic_cast<ProcessorBase*> (myMainProcessorGraph->getNode(i)->getProcessor());
         if (processor) {
             graphIsConnected = graphIsConnected && processor->isConnectedInGraph();
@@ -191,7 +191,7 @@ RenderEngine::render(const double renderLength) {
     
     int numInputAudioChans = myMainProcessorGraph->getNode(0)->getProcessor()->getTotalNumInputChannels();
     int numOutputAudioChans = myMainProcessorGraph->getNode(myMainProcessorGraph->getNumNodes()-1)->getProcessor()->getMainBusNumOutputChannels();
-    
+    std::cout << "lxd in-out" << numInputAudioChans << " " << numOutputAudioChans << " " << myBufferSize << std::endl;
     int audioBufferNumChans = std::max(numOutputAudioChans, numInputAudioChans);
     AudioSampleBuffer audioBuffer(audioBufferNumChans, myBufferSize);
     
@@ -210,6 +210,7 @@ RenderEngine::render(const double renderLength) {
     
     for (long long int i = 0; i < numberOfBuffers; ++i)
     {
+        std::cout << __FILE__ <<  ": lxd processing " << i << " block" << std::endl;
         myMainProcessorGraph->processBlock(audioBuffer, renderMidiBuffer);
 
         myCurrentPositionInfo.timeInSamples += myBufferSize;
@@ -228,55 +229,6 @@ void RenderEngine::setBPM(double bpm) {
         return;
     }
     myBPM = bpm;
-}
-
-py::array_t<float>
-RenderEngine::getAudioFrames()
-{
-    auto nodes = myMainProcessorGraph->getNodes();
-    
-    if (nodes.size() == 0) {
-        // NB: For some reason we can't initialize the array as shape (2, 0)
-        py::array_t<float, py::array::c_style> arr({ 2, 1 });
-        arr.resize({ 2, 0 });
-
-        return arr;
-    }
-    
-    auto node = nodes.getLast();
-    
-    auto processor = dynamic_cast<ProcessorBase*>(node->getProcessor());
-    if (processor) {
-        auto uniqueName = processor->getUniqueName();
-        return getAudioFramesForName(uniqueName);
-    }
-
-    // NB: For some reason we can't initialize the array as shape (2, 0)
-    py::array_t<float, py::array::c_style> arr({ 2, 1 });
-    arr.resize({ 2, 0 });
-
-    return arr;
-}
-
-py::array_t<float>
-RenderEngine::getAudioFramesForName(std::string& name)
-{
-    auto nodes = myMainProcessorGraph->getNodes();
-    for (auto& node : nodes) {
-
-        auto processor = dynamic_cast<ProcessorBase*>(node->getProcessor());
-        if (processor) {
-            if (std::strcmp(processor->getUniqueName().c_str(), name.c_str()) == 0) {
-                return processor->getAudioFrames();
-            }
-        }
-    }
-
-    // NB: For some reason we can't initialize the array as shape (2, 0)
-    py::array_t<float, py::array::c_style> arr({ 2, 1 });
-    arr.resize({ 2, 0 });
-
-    return arr;
 }
 
 bool

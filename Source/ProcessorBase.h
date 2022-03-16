@@ -1,8 +1,8 @@
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "custom_pybind_wrappers.h"
 #include "CustomParameters.h"
+#include "automate_parameters.h"
 
 
 class ProcessorBase : public juce::AudioProcessor
@@ -71,14 +71,15 @@ public:
     void getStateInformation(juce::MemoryBlock&);
     void setStateInformation(const void*, int);
 
-    bool setAutomation(std::string parameterName, py::array input);
-
     bool setAutomationVal(std::string parameterName, float val);
 
     float getAutomationVal(std::string parameterName, int index);
 
     std::vector<float> getAutomation(std::string parameterName);
-    py::array_t<float> getAutomationNumpy(std::string parameterName);
+    
+    // lxd
+    const juce::AudioSampleBuffer& recordBuffer() const {return myRecordBuffer;}
+    const AudioProcessorValueTreeState& parameters() const {return myParameters;}
 
     //==============================================================================
     std::string getUniqueName() { return myUniqueName; }
@@ -87,27 +88,6 @@ public:
 
     void setRecordEnable(bool recordEnable) { m_recordEnable = recordEnable; }
     bool getRecordEnable() { return m_recordEnable; }
-
-    py::array_t<float>
-    getAudioFrames()
-    {
-        size_t num_channels = myRecordBuffer.getNumChannels();
-        size_t num_samples = myRecordBuffer.getNumSamples();
-
-        py::array_t<float, py::array::c_style> arr({ (int)num_channels, (int)num_samples });
-
-        auto ra = arr.mutable_unchecked();
-
-        for (size_t i = 0; i < num_channels; i++)
-        {
-            for (size_t j = 0; j < num_samples; j++)
-            {
-                ra(i, j) = myRecordBuffer.getSample(i, j);
-            }
-        }
-
-        return arr;
-    }
 
     void setRecorderLength(int numSamples) {
         int numChannels = this->getTotalNumOutputChannels();

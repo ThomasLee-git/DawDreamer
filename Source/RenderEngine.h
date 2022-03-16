@@ -32,15 +32,12 @@ public:
 
     void setBPM(double bpm);
 
-    py::array_t<float> getAudioFrames();
-
-    py::array_t<float> getAudioFramesForName(std::string& name);
-
     bool getCurrentPosition(CurrentPositionInfo& result) override;
     bool canControlTransport() override;
     void transportPlay(bool shouldStartPlaying) override;
     void transportRecord(bool shouldStartRecording) override;
     void transportRewind() override;
+    inline std::unique_ptr<juce::AudioProcessorGraph>& mainProcessorGraph() {return myMainProcessorGraph;}
 
 protected:
 
