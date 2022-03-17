@@ -136,8 +136,8 @@ play the audio in double the amount of time, so it will sound slowed down.")
     //         "A list of gain levels to apply to the corresponding inputs.")
     //     .doc() = "An Add Processor adds one or more stereo inputs with corresponding gain parameters.";
 
-//     py::class_<PluginProcessor, std::shared_ptr<PluginProcessor>, ProcessorBase>(m, "PluginProcessor")
-//         .def("load_preset", &PluginProcessor::loadPreset, arg("filepath"), "Load an FXP preset.")
+    py::class_<PluginProcessorWrapper, std::shared_ptr<PluginProcessorWrapper>, ProcessorBase>(m, "PluginProcessor")
+        .def("load_preset", &PluginProcessor::loadPreset, arg("filepath"), "Load an FXP preset.")
 //         .def("load_vst3_preset", &PluginProcessor::loadVST3Preset, arg("filepath"), "Load a VST3 preset.")
 //         .def("get_patch", &PluginProcessor::wrapperGetPatch)
 //         .def("set_patch", &PluginProcessor::wrapperSetPatch, arg("patch"))
@@ -151,9 +151,9 @@ play the audio in double the amount of time, so it will sound slowed down.")
 //         .def("get_plugin_parameter_size", &PluginProcessor::wrapperGetPluginParameterSize, "Get the number of parameters.")
 //         .def("get_plugin_parameters_description", &PluginProcessor::getPluginParametersDescription,
 //             "Get a list of dictionaries describing the plugin's parameters.")
-//         .def_property_readonly("n_midi_events", &PluginProcessor::getNumMidiEvents, "The number of MIDI events stored in the buffer. \
-// Note that note-ons and note-offs are counted separately.")
-//         .def("load_midi", &PluginProcessor::loadMidi, arg("filepath"), "Load MIDI from a file.")
+        .def_property_readonly("n_midi_events", &PluginProcessor::getNumMidiEvents, "The number of MIDI events stored in the buffer. \
+Note that note-ons and note-offs are counted separately.")
+        .def("load_midi", &PluginProcessor::loadMidi, arg("filepath"), "Load MIDI from a file.");
 //         .def("clear_midi", &PluginProcessor::clearMidi, "Remove all MIDI notes.")
 //         .def("add_midi_note", &PluginProcessor::addMidiNote,
 //             arg("note"), arg("velocity"), arg("start_time"), arg("duration"),
