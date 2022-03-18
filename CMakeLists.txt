@@ -110,22 +110,23 @@ endif()
 #    ${GLOBAL_RESOURCES}
 # )
 
-include_directories(/Users/thomas/miniconda3/envs/daw/include/python3.10)
+# include_directories(/Users/thomas/miniconda3/envs/daw/include/python3.10)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/JuceLibraryCode/modules)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/JuceLibraryCode)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/JuceLibraryCode/modules/juce_audio_processors/format_types/VST3_SDK)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/JUCE/modules/juce_audio_processors/format_types/VST3_SDK)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/pybind11/include)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/faust/architecture)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/faust/compiler)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/faust/compiler/utils)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/libsamplerate/src)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/libsamplerate/include)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/rubberband)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/rubberband/rubberband)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/rubberband/src/kissfft)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/rubberband/src)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/portable_endian/include)
+# used for python
+# include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/pybind11/include)
+# include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/faust/architecture)
+# include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/faust/compiler)
+# include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/faust/compiler/utils)
+# include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/libsamplerate/src)
+# include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/libsamplerate/include)
+# include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/rubberband)
+# include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/rubberband/rubberband)
+# include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/rubberband/src/kissfft)
+# include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/rubberband/src)
+# include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/portable_endian/include)
 
 
 set( SOURCES
@@ -150,36 +151,36 @@ ${CMAKE_CURRENT_SOURCE_DIR}/Source/PluginProcessor.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/Source/PluginProcessorWrapper.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/Source/ProcessorBase.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/Source/RenderEngine.cpp
-${CMAKE_CURRENT_SOURCE_DIR}/Source/RenderEngineWrapper.cpp
-${CMAKE_CURRENT_SOURCE_DIR}/Source/Sampler/Source/DataModels/DataModel.cpp
-${CMAKE_CURRENT_SOURCE_DIR}/Source/Sampler/Source/DataModels/MPESettingsDataModel.cpp
-${CMAKE_CURRENT_SOURCE_DIR}/Source/Sampler/Source/SamplerAudioProcessor.cpp
-${CMAKE_CURRENT_SOURCE_DIR}/Source/Sampler/Source/SamplerAudioProcessorEditor.cpp
-${CMAKE_CURRENT_SOURCE_DIR}/Source/custom_pybind_wrappers.cpp
-${CMAKE_CURRENT_SOURCE_DIR}/Source/source.cpp
-${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/rubberband/src/RubberBandStretcher.cpp
-${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/rubberband/src/StretchCalculator.cpp
-${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/rubberband/src/StretcherChannelData.cpp
-${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/rubberband/src/StretcherImpl.cpp
-${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/rubberband/src/StretcherProcess.cpp
-${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/rubberband/src/audiocurves/CompoundAudioCurve.cpp
-${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/rubberband/src/audiocurves/ConstantAudioCurve.cpp
-${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/rubberband/src/audiocurves/HighFrequencyAudioCurve.cpp
-${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/rubberband/src/audiocurves/PercussiveAudioCurve.cpp
-${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/rubberband/src/audiocurves/SilentAudioCurve.cpp
-${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/rubberband/src/audiocurves/SpectralDifferenceAudioCurve.cpp
-${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/rubberband/src/base/Profiler.cpp
-${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/rubberband/src/dsp/AudioCurveCalculator.cpp
-${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/rubberband/src/dsp/FFT.cpp
-${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/rubberband/src/dsp/Resampler.cpp
-${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/rubberband/src/kissfft/kiss_fft.c
-${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/rubberband/src/kissfft/kiss_fftr.c
-${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/rubberband/src/rubberband-c.cpp
-${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/rubberband/src/speex/resample.c
-${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/rubberband/src/system/Allocators.cpp
-${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/rubberband/src/system/Thread.cpp
-${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/rubberband/src/system/VectorOpsComplex.cpp
-${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/rubberband/src/system/sysutils.cpp
+# ${CMAKE_CURRENT_SOURCE_DIR}/Source/RenderEngineWrapper.cpp
+# ${CMAKE_CURRENT_SOURCE_DIR}/Source/Sampler/Source/DataModels/DataModel.cpp
+# ${CMAKE_CURRENT_SOURCE_DIR}/Source/Sampler/Source/DataModels/MPESettingsDataModel.cpp
+# ${CMAKE_CURRENT_SOURCE_DIR}/Source/Sampler/Source/SamplerAudioProcessor.cpp
+# ${CMAKE_CURRENT_SOURCE_DIR}/Source/Sampler/Source/SamplerAudioProcessorEditor.cpp
+# ${CMAKE_CURRENT_SOURCE_DIR}/Source/custom_pybind_wrappers.cpp
+# ${CMAKE_CURRENT_SOURCE_DIR}/Source/source.cpp
+# ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/rubberband/src/RubberBandStretcher.cpp
+# ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/rubberband/src/StretchCalculator.cpp
+# ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/rubberband/src/StretcherChannelData.cpp
+# ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/rubberband/src/StretcherImpl.cpp
+# ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/rubberband/src/StretcherProcess.cpp
+# ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/rubberband/src/audiocurves/CompoundAudioCurve.cpp
+# ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/rubberband/src/audiocurves/ConstantAudioCurve.cpp
+# ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/rubberband/src/audiocurves/HighFrequencyAudioCurve.cpp
+# ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/rubberband/src/audiocurves/PercussiveAudioCurve.cpp
+# ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/rubberband/src/audiocurves/SilentAudioCurve.cpp
+# ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/rubberband/src/audiocurves/SpectralDifferenceAudioCurve.cpp
+# ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/rubberband/src/base/Profiler.cpp
+# ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/rubberband/src/dsp/AudioCurveCalculator.cpp
+# ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/rubberband/src/dsp/FFT.cpp
+# ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/rubberband/src/dsp/Resampler.cpp
+# ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/rubberband/src/kissfft/kiss_fft.c
+# ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/rubberband/src/kissfft/kiss_fftr.c
+# ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/rubberband/src/rubberband-c.cpp
+# ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/rubberband/src/speex/resample.c
+# ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/rubberband/src/system/Allocators.cpp
+# ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/rubberband/src/system/Thread.cpp
+# ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/rubberband/src/system/VectorOpsComplex.cpp
+# ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/rubberband/src/system/sysutils.cpp
 )
 
 set( STATIC_DEPENDENCIES
@@ -269,45 +270,67 @@ ${QUARTZ_CORE_LIBRARY}
 ${WEB_KIT_LIBRARY}
 )
 
-
-##
-## DawDreamer - Dynamic Library
-##
-
-add_library(dawdreamer SHARED
-${SOURCES}
-${PUBLIC_HEADERS}
-${PROJECT_HEADERS}
-${PRIVATE_HEADERS}
-${RESOURCES}
-)
-
-target_compile_options(dawdreamer PUBLIC -fPIC)
-
-target_compile_definitions(dawdreamer PUBLIC DEBUG=1 _DEBUG=1 SAMPLER_SKIP_UI HAVE_LIBSAMPLERATE HAVE_VDSP USE_PTHREADS JucePlugin_Build_VST=0 JucePlugin_Build_VST3=0 JucePlugin_Build_AU=0 JucePlugin_Build_AUv3=0 JucePlugin_Build_RTAS=0 JucePlugin_Build_AAX=0 JucePlugin_Build_Standalone=0 JucePlugin_Build_Unity=0)
-
-target_link_directories(dawdreamer PUBLIC /Users/thomas/miniconda3/envs/daw/lib)
-target_link_directories(dawdreamer PUBLIC /Users/thomas/git/DawDreamer/thirdparty/libsamplerate/build_release/src)
-target_link_directories(dawdreamer PUBLIC /Volumes/ramdisk/Faust-2.37.3/lib)
-
 message("lxd: ${BEGIN_ALL_LOAD}")
 message("lxd: ${STATIC_DEPENDENCIES}")
 message("lxd: ${END_ALL_LOAD}")
 message("lxd: ${DEPENDENCIES}")
 message("lxd: ${MULLE_SDE_LINKER_FLAGS}")
 
-target_link_libraries( dawdreamer
+
+# add static library
+add_library(dawdreamer STATIC ${SOURCES} ${PUBLIC_HEADERS} ${PROJECT_HEADERS} ${PRIVATE_HEADERS} ${RESOURCES})
+target_compile_definitions(dawdreamer PUBLIC DEBUG=1 _DEBUG=1 SAMPLER_SKIP_UI HAVE_VDSP USE_PTHREADS JucePlugin_Build_VST=0 JucePlugin_Build_VST3=0 JucePlugin_Build_AU=0 JucePlugin_Build_AUv3=0 JucePlugin_Build_RTAS=0 JucePlugin_Build_AAX=0 JucePlugin_Build_Standalone=0 JucePlugin_Build_Unity=0)
+target_link_libraries(dawdreamer
 ${BEGIN_ALL_LOAD}
 ${STATIC_DEPENDENCIES}
 ${END_ALL_LOAD}
 ${DEPENDENCIES}
 ${MULLE_SDE_LINKER_FLAGS}
-   samplerate
-   faust
 )
 
-target_link_options(dawdreamer PUBLIC
-"LINKER:-undefined,dynamic_lookup")
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/Source)
+add_executable(lxd_test_dawdreamer ${CMAKE_CURRENT_SOURCE_DIR}/examples/lxd_test_dawdreamer.cpp)
+target_link_libraries(lxd_test_dawdreamer PUBLIC dawdreamer)
+
+
+##
+## DawDreamer - Dynamic Library
+##
+
+# add_library(dawdreamer SHARED
+# ${SOURCES}
+# ${PUBLIC_HEADERS}
+# ${PROJECT_HEADERS}
+# ${PRIVATE_HEADERS}
+# ${RESOURCES}
+# )
+
+# target_compile_options(dawdreamer PUBLIC -fPIC)
+
+# target_compile_definitions(dawdreamer PUBLIC DEBUG=1 _DEBUG=1 SAMPLER_SKIP_UI HAVE_LIBSAMPLERATE HAVE_VDSP USE_PTHREADS JucePlugin_Build_VST=0 JucePlugin_Build_VST3=0 JucePlugin_Build_AU=0 JucePlugin_Build_AUv3=0 JucePlugin_Build_RTAS=0 JucePlugin_Build_AAX=0 JucePlugin_Build_Standalone=0 JucePlugin_Build_Unity=0)
+
+# target_link_directories(dawdreamer PUBLIC /Users/thomas/miniconda3/envs/daw/lib)
+# target_link_directories(dawdreamer PUBLIC /Users/thomas/git/DawDreamer/thirdparty/libsamplerate/build_release/src)
+# target_link_directories(dawdreamer PUBLIC /Volumes/ramdisk/Faust-2.37.3/lib)
+
+# message("lxd: ${BEGIN_ALL_LOAD}")
+# message("lxd: ${STATIC_DEPENDENCIES}")
+# message("lxd: ${END_ALL_LOAD}")
+# message("lxd: ${DEPENDENCIES}")
+# message("lxd: ${MULLE_SDE_LINKER_FLAGS}")
+
+# target_link_libraries( dawdreamer
+# ${BEGIN_ALL_LOAD}
+# ${STATIC_DEPENDENCIES}
+# ${END_ALL_LOAD}
+# ${DEPENDENCIES}
+# ${MULLE_SDE_LINKER_FLAGS}
+#    samplerate
+#    faust
+# )
+
+# target_link_options(dawdreamer PUBLIC
+# "LINKER:-undefined,dynamic_lookup")
 
 # install( TARGETS dawdreamer DESTINATION "lib")
 # install( FILES ${PUBLIC_HEADERS} DESTINATION "include/DawDreamer---Dynamic-Library")

@@ -7,6 +7,7 @@
 #include <string>
 
 #include "AllProcessors.h"
+#include "ProcessorBase.h"
 
 class DAGNode {
 public:
@@ -38,6 +39,8 @@ public:
     void transportRecord(bool shouldStartRecording) override;
     void transportRewind() override;
     inline std::unique_ptr<juce::AudioProcessorGraph>& mainProcessorGraph() {return myMainProcessorGraph;}
+    const juce::AudioSampleBuffer& getAudioFromProcessor(const ProcessorBase* processor);
+    const juce::AudioSampleBuffer& getAudio();
 
 protected:
 

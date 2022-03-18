@@ -1,4 +1,6 @@
 #include "RenderEngine.h"
+#include "ProcessorBase.h"
+#include <stdexcept>
 #include <unordered_map>
 
 RenderEngine::RenderEngine(double sr, int bs) :
@@ -252,3 +254,23 @@ RenderEngine::transportRecord(bool shouldStartRecording) { }
 /** Rewinds the audio. */
 void
 RenderEngine::transportRewind() {}
+
+const juce::AudioSampleBuffer&  RenderEngine::getAudio() {
+    auto& main_processor_graph = this->mainProcessorGraph();
+    auto nodes = main_processor_graph->getNodes();
+
+    if (nodes.size() == 0) {
+         throw std::runtime_error("empty graph");
+    }
+
+    auto node = nodes.getLast();
+    auto processor = dynamic_cast<ProcessorBase*>(node->getProcessor());
+    if (processor) {
+        return getAudioFromProcessor(processor);
+    }
+    throw std::runtime_error("invalid last processor");
+}
+
+const juce::AudioSampleBuffer& RenderEngine::getAudioFromProcessor(const ProcessorBase* processor) {
+    return processor->recordBuffer();
+}
