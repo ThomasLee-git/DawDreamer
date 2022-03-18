@@ -133,7 +133,7 @@ PluginProcessor::processBlock(juce::AudioSampleBuffer& buffer, juce::MidiBuffer&
         }
     } while (myIsMessageBetween && myMidiEventsDoRemain);
     
-    std::cout << __FILE__ <<  ": lxd pluginprocessor block" << std::endl;
+    // std::cout << __FILE__ <<  ": lxd pluginprocessor block" << std::endl;
     myPlugin->processBlock(buffer, myRenderMidiBuffer);
     
     ProcessorBase::processBlock(buffer, midiBuffer);
@@ -397,7 +397,7 @@ PluginProcessor::getNumMidiEvents() {
 bool
 PluginProcessor::loadMidi(const std::string& path)
 {
-    std::cout << "lxd test" << std::endl;
+    // std::cout << "lxd test" << std::endl;
     File file = File(path);
     FileInputStream fileStream(file);
     MidiFile midiFile;
@@ -405,11 +405,11 @@ PluginProcessor::loadMidi(const std::string& path)
     midiFile.convertTimestampTicksToSeconds();
     myMidiBuffer.clear();
 
-    std::cout << "lxd test: " << midiFile.getNumTracks() << std::endl;
+    // std::cout << "lxd test: " << midiFile.getNumTracks() << std::endl;
     
     for (int t = 0; t < midiFile.getNumTracks(); t++) {
         const MidiMessageSequence* track = midiFile.getTrack(t);
-        std::cout << "lxd test: " << track->getNumEvents() << std::endl;
+        // std::cout << "lxd test: " << track->getNumEvents() << std::endl;
         for (int i = 0; i < track->getNumEvents(); i++) {
             MidiMessage& m = track->getEventPointer(i)->message;
             int sampleOffset = (int)(mySampleRate * m.getTimeStamp());

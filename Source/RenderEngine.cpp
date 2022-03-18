@@ -193,7 +193,7 @@ RenderEngine::render(const double renderLength) {
     
     int numInputAudioChans = myMainProcessorGraph->getNode(0)->getProcessor()->getTotalNumInputChannels();
     int numOutputAudioChans = myMainProcessorGraph->getNode(myMainProcessorGraph->getNumNodes()-1)->getProcessor()->getMainBusNumOutputChannels();
-    std::cout << "lxd in-out" << numInputAudioChans << " " << numOutputAudioChans << " " << myBufferSize << std::endl;
+    // std::cout << "lxd in-out" << numInputAudioChans << " " << numOutputAudioChans << " " << myBufferSize << std::endl;
     int audioBufferNumChans = std::max(numOutputAudioChans, numInputAudioChans);
     AudioSampleBuffer audioBuffer(audioBufferNumChans, myBufferSize);
     
@@ -212,7 +212,7 @@ RenderEngine::render(const double renderLength) {
     
     for (long long int i = 0; i < numberOfBuffers; ++i)
     {
-        std::cout << __FILE__ <<  ": lxd processing " << i << " block" << std::endl;
+        // std::cout << __FILE__ <<  ": lxd processing " << i << " block" << std::endl;
         myMainProcessorGraph->processBlock(audioBuffer, renderMidiBuffer);
 
         myCurrentPositionInfo.timeInSamples += myBufferSize;
